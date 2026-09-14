@@ -139,6 +139,7 @@ main {
 }
 
 .button.secondary {
+  background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(189, 139, 47, 0.48);
   color: var(--navy);
 }
@@ -164,7 +165,7 @@ main {
   align-items: center;
   display: grid;
   gap: 64px;
-  grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.9fr);
+  grid-template-columns: minmax(0, 0.82fr) minmax(340px, 0.95fr);
   min-height: 700px;
   padding-top: 136px;
   position: relative;
@@ -172,12 +173,18 @@ main {
 
 .hero::before {
   background:
-    linear-gradient(105deg, rgba(251, 248, 242, 0.99) 0%, rgba(251, 248, 242, 0.98) 41%, rgba(6, 29, 51, 0.98) 41%, rgba(6, 29, 51, 0.98) 100%),
+    linear-gradient(105deg, rgba(251, 248, 242, 0.99) 0%, rgba(251, 248, 242, 0.98) 56%, rgba(6, 29, 51, 0.98) 56%, rgba(6, 29, 51, 0.98) 100%),
     url("/capa-fernandinha.png") right center / cover no-repeat;
   content: "";
   inset: 0 calc(50% - 50vw);
   position: absolute;
   z-index: -2;
+}
+
+.hero-copy {
+  max-width: 560px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero::after {
@@ -219,7 +226,7 @@ h2 {
 
 h1 {
   font-size: clamp(42px, 5.2vw, 70px);
-  max-width: 660px;
+  max-width: 560px;
 }
 
 h2 {
@@ -244,7 +251,7 @@ p {
   color: #263d52;
   font-size: 18px;
   line-height: 1.62;
-  max-width: 620px;
+  max-width: 540px;
 }
 
 .hero-meta {
@@ -252,7 +259,7 @@ p {
   flex-wrap: wrap;
   gap: 10px;
   margin: 28px 0;
-  max-width: 720px;
+  max-width: 540px;
 }
 
 .hero-meta span,
@@ -264,6 +271,11 @@ p {
   font-size: 13px;
   font-weight: 700;
   padding: 9px 13px;
+}
+
+.hero-meta span {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px rgba(6, 29, 51, 0.06);
 }
 
 .hero-actions {
