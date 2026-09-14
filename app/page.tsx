@@ -1,4 +1,13 @@
 import Image from "next/image";
+import {
+  BadgeDollarSign,
+  Banknote,
+  Calculator,
+  ClipboardCheck,
+  FileSearch,
+  FileText,
+  Scale,
+} from "lucide-react";
 
 const whatsappMessage =
   "Olá, Fernanda. Gostaria de informações sobre os serviços de perícia e análise econômico-financeira.";
@@ -11,26 +20,32 @@ const services = [
   {
     title: "Perícia Econômico-Financeira",
     text: "Análise técnica de informações financeiras, cálculos, valores e documentos para identificação de divergências e elaboração de conclusões fundamentadas.",
+    icon: BadgeDollarSign,
   },
   {
     title: "Perícia Contratual",
     text: "Análise técnica de contratos, condições financeiras, obrigações, encargos e informações relacionadas à execução contratual.",
+    icon: FileText,
   },
   {
     title: "Contratos Bancários",
     text: "Análise de contratos e operações bancárias com atenção a juros, encargos, tarifas, evolução da dívida e demais componentes financeiros.",
+    icon: Banknote,
   },
   {
     title: "Cálculos e Apuração de Valores",
     text: "Conferência, reconstrução e apuração de valores com base em documentos, contratos e informações financeiras.",
+    icon: Calculator,
   },
   {
     title: "Assistência Técnica Judicial",
     text: "Apoio técnico às partes e seus representantes em demandas que envolvam questões econômico-financeiras e contratuais.",
+    icon: Scale,
   },
   {
     title: "Análise Documental e Financeira",
     text: "Exame criterioso de documentos, demonstrativos, contratos e dados financeiros para identificação de inconsistências ou divergências.",
+    icon: FileSearch,
   },
 ];
 
@@ -229,13 +244,19 @@ export default function Home() {
           </p>
         </div>
         <div className="service-grid">
-          {services.map((service) => (
-            <article className="service-card" key={service.title}>
-              <div className="service-icon" aria-hidden="true" />
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-            </article>
-          ))}
+          {services.map((service) => {
+            const Icon = service.icon;
+
+            return (
+              <article className="service-card" key={service.title}>
+                <div className="service-icon" aria-hidden="true">
+                  <Icon size={30} strokeWidth={1.8} />
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -253,7 +274,10 @@ export default function Home() {
           </div>
           <div className="data-card" aria-label="Áreas de experiência bancária">
             {bankingExperience.map((item) => (
-              <span key={item}>{item}</span>
+              <span key={item}>
+                <ClipboardCheck size={18} strokeWidth={1.8} aria-hidden="true" />
+                {item}
+              </span>
             ))}
           </div>
         </div>
@@ -266,7 +290,10 @@ export default function Home() {
         </div>
         <div className="dual-grid">
           <article>
-            <span className="number">01</span>
+            <span className="number">
+              <Scale size={30} strokeWidth={1.7} aria-hidden="true" />
+              01
+            </span>
             <h3>Perícia Judicial</h3>
             <p>
               A análise técnica pode auxiliar na compreensão de questões
@@ -275,7 +302,10 @@ export default function Home() {
             </p>
           </article>
           <article>
-            <span className="number">02</span>
+            <span className="number">
+              <FileSearch size={30} strokeWidth={1.7} aria-hidden="true" />
+              02
+            </span>
             <h3>Perícia Extrajudicial</h3>
             <p>
               Análises técnicas podem ser utilizadas para conferir contratos,
@@ -293,7 +323,10 @@ export default function Home() {
         </div>
         <div className="audience-list">
           {audiences.map((item) => (
-            <span key={item}>{item}</span>
+            <span key={item}>
+              <ClipboardCheck size={17} strokeWidth={1.8} aria-hidden="true" />
+              {item}
+            </span>
           ))}
         </div>
       </section>
