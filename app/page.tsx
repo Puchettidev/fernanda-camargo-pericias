@@ -1,12 +1,17 @@
 import Image from "next/image";
 import {
+  ArrowRight,
   BadgeDollarSign,
   Banknote,
   Calculator,
   ClipboardCheck,
+  CircleHelp,
   FileSearch,
   FileText,
+  MapPin,
+  MessageCircle,
   Scale,
+  ShieldCheck,
 } from "lucide-react";
 
 const whatsappMessage =
@@ -97,6 +102,48 @@ const audiences = [
   "Pessoas físicas",
   "Profissionais envolvidos em demandas judiciais",
   "Partes interessadas em análise técnica de contratos ou operações financeiras",
+];
+
+const trustMarkers = [
+  {
+    title: "Sigilo profissional",
+    text: "Tratamento responsável das informações e documentos compartilhados.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Análise criteriosa",
+    text: "Avaliação técnica com organização, método e fundamentação.",
+    icon: FileSearch,
+  },
+  {
+    title: "Experiência bancária",
+    text: "Vivência prática em contratos, crédito, encargos, tarifas e operações.",
+    icon: Banknote,
+  },
+  {
+    title: "Atuação regional",
+    text: "Atendimento em Muriaé - MG e região, conforme a natureza da demanda.",
+    icon: MapPin,
+  },
+];
+
+const faqs = [
+  [
+    "Quais contratos podem ser analisados?",
+    "Contratos bancários de empréstimo pessoal, empresarial, habitacional, financiamento de veículos e outras operações financeiras.",
+  ],
+  [
+    "O serviço pode ser judicial e extrajudicial?",
+    "Sim. A atuação pode apoiar demandas judiciais ou análises realizadas fora do processo, conforme a necessidade apresentada.",
+  ],
+  [
+    "Quais documentos são necessários?",
+    "A documentação depende do caso. Em geral, contratos, demonstrativos, extratos, planilhas, comprovantes e informações financeiras ajudam na análise inicial.",
+  ],
+  [
+    "Como começa o atendimento?",
+    "O primeiro contato serve para entender a demanda, verificar os documentos disponíveis e orientar os próximos passos técnicos.",
+  ],
 ];
 
 const structuredData = {
@@ -258,6 +305,35 @@ export default function Home() {
             );
           })}
         </div>
+        <div className="section-cta">
+          <p>Tem uma demanda envolvendo juros, contratos ou valores bancários?</p>
+          <a className="button primary" href={whatsappUrl} target="_blank" rel="noreferrer">
+            Conversar com Fernanda
+            <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section className="section trust">
+        <div className="section-heading compact">
+          <p className="eyebrow">Confiança técnica</p>
+          <h2>Base para uma análise segura e bem documentada</h2>
+        </div>
+        <div className="trust-grid">
+          {trustMarkers.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title}>
+                <Icon size={26} strokeWidth={1.8} aria-hidden="true" />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section>
 
       <section className="experience-band" id="experiencia">
@@ -362,6 +438,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section faq">
+        <div className="section-heading compact">
+          <p className="eyebrow">Perguntas frequentes</p>
+          <h2>Dúvidas comuns antes da análise técnica</h2>
+        </div>
+        <div className="faq-list">
+          {faqs.map(([question, answer]) => (
+            <article key={question}>
+              <CircleHelp size={24} strokeWidth={1.8} aria-hidden="true" />
+              <div>
+                <h3>{question}</h3>
+                <p>{answer}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="contact-section" id="contato">
         <div className="section contact-grid">
           <div>
@@ -401,6 +495,10 @@ export default function Home() {
           <span>© 2026 Fernanda Camargo Perícias. Todos os direitos reservados.</span>
         </div>
       </footer>
+
+      <a className="floating-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="Falar com Fernanda pelo WhatsApp">
+        <MessageCircle size={25} strokeWidth={2.1} aria-hidden="true" />
+      </a>
     </main>
   );
 }
