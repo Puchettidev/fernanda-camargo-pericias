@@ -21,6 +21,8 @@ const whatsappUrl = `https://wa.me/5532991720299?text=${encodeURIComponent(
   whatsappMessage,
 )}`;
 
+const siteUrl = "https://www.fernandacamargopericias.com.br";
+
 const services = [
   {
     title: "Assistência Técnica Judicial",
@@ -149,9 +151,12 @@ const faqs = [
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#professional-service`,
   name: "Fernanda Camargo Perícias",
   description:
     "Perícia econômico-financeira e contratual em Muriaé/MG, com análise de contratos bancários, juros, encargos, cálculos e assistência técnica judicial.",
+  image: `${siteUrl}/capa-fernandinha.png`,
+  logo: `${siteUrl}/icone-fernanda.png`,
   areaServed: {
     "@type": "AdministrativeArea",
     name: "Muriaé, Minas Gerais, Brasil",
@@ -164,7 +169,7 @@ const structuredData = {
   },
   telephone: "+55 32 99172-0299",
   email: "fernandacamargopericias@gmail.com",
-  url: "https://fernandacamargopericias.com.br",
+  url: siteUrl,
   founder: {
     "@type": "Person",
     name: "Fernanda Camargo Rodrigues",

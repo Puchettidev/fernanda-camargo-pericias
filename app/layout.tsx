@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = "https://www.fernandacamargopericias.com.br";
+
 export const metadata: Metadata = {
   title:
     "Fernanda Camargo Perícias | Perícia Econômico-Financeira em Muriaé MG",
@@ -25,12 +27,28 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Fernanda Camargo Perícias" }],
   creator: "Fernanda Camargo Perícias",
-  metadataBase: new URL("https://fernandacamargopericias.com.br"),
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title:
-      "Fernanda Camargo Perícias | Perícia Econômico-Financeira em Muriaé MG",
+      "Fernanda Camargo Perícias | Perícia Econômico-Financeira e Contratual",
     description:
-      "Análise técnica de contratos bancários, juros, cálculos financeiros e assistência judicial em Muriaé - MG.",
+      "Perícias econômico-financeiras e contratuais, assistência técnica e análises financeiras em Muriaé/MG e região.",
+    url: siteUrl,
+    siteName: "Fernanda Camargo Perícias",
     type: "website",
     locale: "pt_BR",
     images: [
@@ -38,6 +56,19 @@ export const metadata: Metadata = {
         url: "/capa-fernandinha.png",
         width: 2048,
         height: 745,
+        alt: "Fernanda Camargo Perícias",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Fernanda Camargo Perícias | Perícia Econômico-Financeira e Contratual",
+    description:
+      "Perícias econômico-financeiras e contratuais, assistência técnica e análises financeiras em Muriaé/MG e região.",
+    images: [
+      {
+        url: "/capa-fernandinha.png",
         alt: "Fernanda Camargo Perícias",
       },
     ],
