@@ -18,8 +18,13 @@ const whatsappUrl = `https://wa.me/5532991720299?text=${encodeURIComponent(
 
 const services = [
   {
+    title: "Assistência Técnica Judicial",
+    text: "Apoio técnico às partes e seus representantes em demandas que envolvam questões econômico-financeiras e contratuais.",
+    icon: Scale,
+  },
+  {
     title: "Perícia Econômico-Financeira",
-    text: "Análise técnica de informações financeiras, cálculos, valores e documentos para identificação de divergências e elaboração de conclusões fundamentadas.",
+    text: "Análise dos juros de contratos bancários de empréstimo pessoal, empresarial, habitacional, financiamento de veículos e outras operações.",
     icon: BadgeDollarSign,
   },
   {
@@ -36,11 +41,6 @@ const services = [
     title: "Cálculos e Apuração de Valores",
     text: "Conferência, reconstrução e apuração de valores com base em documentos, contratos e informações financeiras.",
     icon: Calculator,
-  },
-  {
-    title: "Assistência Técnica Judicial",
-    text: "Apoio técnico às partes e seus representantes em demandas que envolvam questões econômico-financeiras e contratuais.",
-    icon: Scale,
   },
   {
     title: "Análise Documental e Financeira",
@@ -120,7 +120,7 @@ const structuredData = {
   url: "https://fernandacamargopericias.com.br",
   founder: {
     "@type": "Person",
-    name: "Fernanda Camargo Rodrigues Puchetti",
+    name: "Fernanda Camargo Rodrigues",
     jobTitle: "Administradora",
   },
   serviceType: [
@@ -205,9 +205,9 @@ export default function Home() {
         <div className="about-grid">
           <div className="text-block">
             <p>
-              Fernanda Camargo Rodrigues Puchetti é Administradora, registrada no
-              CRA-MG, com MBA em Gestão Estratégica de Negócios e Pós-graduanda
-              em Perícia Judicial e Extrajudicial.
+              Fernanda Camargo Rodrigues é Administradora, registrada no CRA-MG,
+              com MBA em Gestão Estratégica de Negócios e Pós-graduanda em
+              Perícia Judicial e Extrajudicial.
             </p>
             <p>
               Possui 15 anos de experiência no setor bancário, com atuação direta
