@@ -7,6 +7,7 @@ import {
   ClipboardCheck,
   CircleHelp,
   FileSearch,
+  FileSpreadsheet,
   FileText,
   MapPin,
   MessageCircle,
@@ -31,7 +32,7 @@ const services = [
   },
   {
     title: "Perícia Econômico-Financeira",
-    text: "Análise dos juros de contratos bancários de empréstimo pessoal, empresarial, habitacional, financiamento de veículos e outras operações.",
+    text: "Análise dos juros de contratos bancários de empréstimo pessoal, empresarial, habitacional, financiamento de veículos, cálculos trabalhistas e outras operações.",
     icon: BadgeDollarSign,
   },
   {
@@ -48,6 +49,11 @@ const services = [
     title: "Cálculos e Apuração de Valores",
     text: "Conferência, reconstrução e apuração de valores com base em documentos, contratos e informações financeiras.",
     icon: Calculator,
+  },
+  {
+    title: "Cálculo de Revisão Trabalhista",
+    text: "Elaboração e revisão de cálculos trabalhistas com análise técnica de verbas, reflexos, encargos e demais valores envolvidos.",
+    icon: FileSpreadsheet,
   },
   {
     title: "Análise Documental e Financeira",
