@@ -1,66 +1,23 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
-  BadgeDollarSign,
   Banknote,
-  Calculator,
   ClipboardCheck,
   CircleHelp,
   FileSearch,
-  FileSpreadsheet,
-  FileText,
   MapPin,
   MessageCircle,
   Scale,
   ShieldCheck,
 } from "lucide-react";
+import { ServiceIcon } from "./components/service-icon";
+import { SiteFooter } from "./components/site-footer";
+import { SiteHeader } from "./components/site-header";
+import { services } from "./service-data";
+import { contact, createWhatsappUrl, siteUrl } from "./site-config";
 
-const whatsappMessage =
-  "Olá, Fernanda. Gostaria de informações sobre os serviços de perícia e análise econômico-financeira.";
-
-const whatsappUrl = `https://wa.me/5532991720299?text=${encodeURIComponent(
-  whatsappMessage,
-)}`;
-
-const siteUrl = "https://www.fernandacamargopericias.com.br";
-
-const services = [
-  {
-    title: "Assistência Técnica Judicial",
-    text: "Apoio técnico às partes e seus representantes em demandas que envolvam questões econômico-financeiras e contratuais.",
-    icon: Scale,
-  },
-  {
-    title: "Perícia Econômico-Financeira",
-    text: "Análise dos juros de contratos bancários de empréstimo pessoal, empresarial, habitacional, financiamento de veículos, cálculos trabalhistas e outras operações.",
-    icon: BadgeDollarSign,
-  },
-  {
-    title: "Perícia Contratual",
-    text: "Análise técnica de contratos, condições financeiras, obrigações, encargos e informações relacionadas à execução contratual.",
-    icon: FileText,
-  },
-  {
-    title: "Contratos Bancários",
-    text: "Análise de contratos e operações bancárias com atenção a juros, encargos, tarifas, evolução da dívida e demais componentes financeiros.",
-    icon: Banknote,
-  },
-  {
-    title: "Cálculos e Apuração de Valores",
-    text: "Conferência, reconstrução e apuração de valores com base em documentos, contratos e informações financeiras.",
-    icon: Calculator,
-  },
-  {
-    title: "Cálculo de Revisão Trabalhista",
-    text: "Elaboração e revisão de cálculos trabalhistas com análise técnica de verbas, reflexos, encargos e demais valores envolvidos.",
-    icon: FileSpreadsheet,
-  },
-  {
-    title: "Análise Documental e Financeira",
-    text: "Exame criterioso de documentos, demonstrativos, contratos e dados financeiros para identificação de inconsistências ou divergências.",
-    icon: FileSearch,
-  },
-];
+const whatsappUrl = createWhatsappUrl();
 
 const bankingExperience = [
   "Produtos bancários",
@@ -182,10 +139,7 @@ const structuredData = {
     jobTitle: "Administradora",
   },
   serviceType: [
-    "Perícia econômico-financeira",
-    "Perícia contratual",
-    "Análise de contratos bancários",
-    "Assistência técnica judicial",
+    ...services.map((service) => service.title),
   ],
 };
 
@@ -197,60 +151,47 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <header className="site-header">
-        <a href="#inicio" className="brand" aria-label="Fernanda Camargo Perícias">
-          <Image src="/icone-fernanda.png" alt="" width={44} height={44} priority />
-          <span>
-            <strong>Fernanda Camargo</strong>
-            <small>Perícias</small>
-          </span>
-        </a>
-        <nav className="desktop-nav" aria-label="Navegação principal">
-          <a href="#sobre">Sobre</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#experiencia">Experiência</a>
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#contato">Contato</a>
-        </nav>
-        <a className="header-cta" href={whatsappUrl} target="_blank" rel="noreferrer">
-          Fale com a Fernanda
-        </a>
-      </header>
+      <SiteHeader />
 
       <section className="hero section" id="inicio">
         <div className="hero-copy">
           <p className="eyebrow">Fernanda Camargo Perícias</p>
-          <h1>Precisão técnica para decisões financeiras e contratuais.</h1>
+          <h1>Perícia econômico-financeira e assistência técnica em Muriaé e região</h1>
           <p className="hero-subtitle">
-            Perícias econômico-financeiras, análises contratuais e assistência
-            técnica com experiência prática de 15 anos no setor bancário.
+            Apoio técnico para advogados, escritórios, empresas e pessoas físicas
+            em demandas judiciais e extrajudiciais.
           </p>
           <div className="hero-meta">
-            <span>Perícia Econômico-Financeira e Contratual</span>
-            <span>Muriaé - MG e Região</span>
+            <span>15 anos de experiência no setor bancário</span>
             <span>CRA-MG 01-058746/D</span>
           </div>
           <div className="hero-actions">
             <a className="button primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Falar pelo WhatsApp
+              Falar com a Fernanda
             </a>
             <a className="button secondary" href="#servicos">
-              Conhecer os serviços
+              Ver serviços
             </a>
           </div>
         </div>
-        <div className="hero-visual" aria-hidden="true">
+        <div className="hero-visual">
           <Image
             className="hero-logo"
             src="/icone-fernanda.png"
-            alt=""
+            alt="Símbolo Fernanda Camargo Perícias"
             width={720}
             height={720}
             priority
           />
-          <div className="hero-panel">
-            <span>15 anos</span>
-            <p>experiência em operações bancárias, contratos e análise financeira</p>
+          <div className="hero-proof" aria-label="Credenciais profissionais">
+            <div>
+              <strong>15 anos</strong>
+              <span>de experiência no setor bancário</span>
+            </div>
+            <div>
+              <strong>CRA-MG</strong>
+              <span>01-058746/D</span>
+            </div>
           </div>
         </div>
       </section>
@@ -295,26 +236,42 @@ export default function Home() {
       <section className="section services" id="servicos">
         <div className="section-heading">
           <p className="eyebrow">Serviços</p>
-          <h2>Perícia econômico-financeira e contratual</h2>
+          <h2>Análises técnicas para diferentes necessidades</h2>
           <p>
-            Análises técnicas para contratos, operações financeiras, valores,
-            documentos e demandas que exigem clareza, método e fundamentação.
+            Entenda o objetivo de cada serviço, quando ele pode ser solicitado e
+            como apresentar sua demanda à Fernanda.
           </p>
         </div>
         <div className="service-grid">
-          {services.map((service) => {
-            const Icon = service.icon;
-
-            return (
-              <article className="service-card" key={service.title}>
-                <div className="service-icon" aria-hidden="true">
-                  <Icon size={30} strokeWidth={1.8} />
+          {services.map((service) => (
+              <article className="service-card" key={service.slug}>
+                <div className="service-icon">
+                  <ServiceIcon name={service.icon} />
                 </div>
+                <div className="service-card-content">
                 <h3>{service.title}</h3>
-                <p>{service.text}</p>
+                <p>{service.summary}</p>
+                <div className="service-situation">
+                  <strong>Quando solicitar</strong>
+                  <p>{service.situation}</p>
+                </div>
+                <div className="service-actions">
+                  <Link className="text-link" href={`/servicos/${service.slug}`}>
+                    Entender o serviço
+                    <ArrowRight size={17} strokeWidth={2} aria-hidden="true" />
+                  </Link>
+                  <a
+                    className="text-link secondary-link"
+                    href={createWhatsappUrl(service.title)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Falar pelo WhatsApp
+                  </a>
+                </div>
+                </div>
               </article>
-            );
-          })}
+          ))}
         </div>
         <div className="section-cta">
           <p>Tem uma demanda envolvendo juros, contratos ou valores bancários?</p>
@@ -483,9 +440,9 @@ export default function Home() {
           <address>
             <strong>Fernanda Camargo Perícias</strong>
             <span>Muriaé - MG</span>
-            <a href="tel:+5532991720299">(32) 99172-0299</a>
-            <a href="mailto:fernandacamargopericias@gmail.com">
-              fernandacamargopericias@gmail.com
+            <a href={`tel:${contact.phoneHref}`}>{contact.phoneDisplay}</a>
+            <a href={`mailto:${contact.email}`}>
+              {contact.email}
             </a>
             <small>
               Atendimento com sigilo profissional e tratamento responsável das
@@ -495,17 +452,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <div>
-          <strong>Fernanda Camargo Perícias</strong>
-          <span>Administradora | Perícia Econômico-Financeira e Contratual</span>
-        </div>
-        <div>
-          <span>CRA-MG 01-058746/D</span>
-          <span>Muriaé - MG</span>
-          <span>© 2026 Fernanda Camargo Perícias. Todos os direitos reservados.</span>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <a className="floating-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="Falar com Fernanda pelo WhatsApp">
         <MessageCircle size={25} strokeWidth={2.1} aria-hidden="true" />

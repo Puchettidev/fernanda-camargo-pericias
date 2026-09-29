@@ -4,25 +4,22 @@ import "./globals.css";
 const siteUrl = "https://www.fernandacamargopericias.com.br";
 
 export const metadata: Metadata = {
-  title:
-    "Fernanda Camargo Perícias | Perícia Econômico-Financeira em Muriaé MG",
+  title: {
+    default:
+      "Perícia Econômico-Financeira em Muriaé MG | Fernanda Camargo Perícias",
+    template: "%s | Fernanda Camargo Perícias",
+  },
   description:
-    "Perícia econômico-financeira em Muriaé/MG para contratos bancários, análise de juros, encargos, cálculos financeiros e assistência técnica judicial.",
+    "Perícia econômico-financeira, assistência técnica judicial, análise de contratos e cálculos em Muriaé/MG e região.",
   keywords: [
     "perícia econômico-financeira",
     "perícia econômico-financeira em Muriaé",
-    "perícia financeira Muriaé MG",
     "perícia contratual",
-    "perícia bancária",
-    "perícia bancária em Muriaé",
     "análise de contratos bancários",
     "análise de juros",
-    "juros de contrato bancário",
     "cálculos financeiros",
+    "cálculos trabalhistas",
     "assistência técnica judicial",
-    "assistência técnica judicial em Muriaé",
-    "perícia judicial",
-    "perícia extrajudicial",
     "Fernanda Camargo Perícias",
   ],
   authors: [{ name: "Fernanda Camargo Perícias" }],
