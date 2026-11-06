@@ -6,6 +6,7 @@ import { InlineCta } from "../../components/inline-cta";
 import { ServiceIcon } from "../../components/service-icon";
 import { SiteFooter } from "../../components/site-footer";
 import { SiteHeader } from "../../components/site-header";
+import { breadcrumbJsonLd, jsonLdScript, serviceJsonLd } from "../../seo";
 import { getService, services } from "../../service-data";
 import { createWhatsappUrl, siteUrl } from "../../site-config";
 
@@ -28,12 +29,12 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const canonical = `/servicos/${service.slug}`;
 
   return {
-    title: `${service.title} em Muriaé MG`,
-    description: service.summary,
+    title: service.seoTitle,
+    description: service.seoDescription,
     alternates: { canonical },
     openGraph: {
-      title: `${service.title} | Fernanda Camargo Perícias`,
-      description: service.summary,
+      title: `${service.seoTitle} | Fernanda Camargo Perícias`,
+      description: service.seoDescription,
       url: `${siteUrl}${canonical}`,
       siteName: "Fernanda Camargo Perícias",
       type: "website",
@@ -49,8 +50,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.title} | Fernanda Camargo Perícias`,
-      description: service.summary,
+      title: `${service.seoTitle} | Fernanda Camargo Perícias`,
+      description: service.seoDescription,
       images: ["/capa-fernandinha.png"],
     },
   };
@@ -65,26 +66,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
   }
 
   const whatsappUrl = createWhatsappUrl(service.title);
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    description: service.summary,
-    url: `${siteUrl}/servicos/${service.slug}`,
-    areaServed: "Muriaé, Minas Gerais e região",
-    provider: {
-      "@type": "ProfessionalService",
-      name: "Fernanda Camargo Perícias",
-      url: siteUrl,
-    },
-  };
+  const structuredData = [
+    serviceJsonLd(service),
+    breadcrumbJsonLd([
+      { name: "Início", path: "/" },
+      { name: service.title, path: `/servicos/${service.slug}` },
+    ]),
+  ];
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(structuredData)} />
       <SiteHeader />
 
       <section className="service-page-hero">

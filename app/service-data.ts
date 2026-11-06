@@ -10,6 +10,10 @@ export type ServiceIconName =
 export type Service = {
   slug: string;
   title: string;
+  /** <title> da página (o sufixo "| Fernanda Camargo Perícias" é adicionado pelo layout) */
+  seoTitle: string;
+  /** meta description, com a cidade */
+  seoDescription: string;
   summary: string;
   situation: string;
   details: string[];
@@ -20,6 +24,9 @@ export const services: Service[] = [
   {
     slug: "assistencia-tecnica-judicial",
     title: "Assistência Técnica Judicial",
+    seoTitle: "Assistente Técnico Judicial em Muriaé/MG",
+    seoDescription:
+      "Assistência técnica judicial em Muriaé/MG e região: apoio a advogados e partes em processos com questões financeiras, contratuais e de cálculo.",
     summary:
       "Apoio técnico às partes e aos advogados em processos com questões financeiras e contratuais.",
     situation:
@@ -34,6 +41,9 @@ export const services: Service[] = [
   {
     slug: "pericia-economico-financeira",
     title: "Perícia Econômico-Financeira",
+    seoTitle: "Perícia Econômico-Financeira em Muriaé/MG",
+    seoDescription:
+      "Perícia econômico-financeira em Muriaé/MG e região: conferência de juros, encargos, cálculos e valores em contratos e operações financeiras.",
     summary:
       "Conferência de juros, encargos, cálculos e valores em contratos e operações financeiras.",
     situation:
@@ -48,6 +58,9 @@ export const services: Service[] = [
   {
     slug: "pericia-contratual",
     title: "Perícia Contratual",
+    seoTitle: "Perícia Contratual em Muriaé/MG",
+    seoDescription:
+      "Perícia contratual em Muriaé/MG e região: exame de cláusulas financeiras, obrigações, encargos e da evolução dos valores do contrato.",
     summary:
       "Exame das cláusulas financeiras, obrigações, encargos e da evolução dos valores de um contrato.",
     situation:
@@ -62,6 +75,9 @@ export const services: Service[] = [
   {
     slug: "contratos-bancarios",
     title: "Contratos Bancários",
+    seoTitle: "Análise de Contratos Bancários em Muriaé/MG",
+    seoDescription:
+      "Análise de contratos bancários em Muriaé/MG e região: juros, tarifas, encargos e evolução da dívida em empréstimos e financiamentos.",
     summary:
       "Juros, tarifas, encargos e evolução da dívida em empréstimos, financiamentos e outras operações bancárias.",
     situation:
@@ -76,6 +92,9 @@ export const services: Service[] = [
   {
     slug: "calculos-e-apuracao-de-valores",
     title: "Cálculos e Apuração de Valores",
+    seoTitle: "Cálculos e Apuração de Valores em Muriaé/MG",
+    seoDescription:
+      "Cálculos e apuração de valores em Muriaé/MG e região: conferência e reconstrução de valores a partir de contratos, extratos e demonstrativos.",
     summary:
       "Conferência, reconstrução e apuração de valores a partir de contratos, extratos e demonstrativos.",
     situation:
@@ -90,6 +109,9 @@ export const services: Service[] = [
   {
     slug: "calculo-de-revisao-trabalhista",
     title: "Cálculo de Revisão Trabalhista",
+    seoTitle: "Cálculo Trabalhista em Muriaé/MG",
+    seoDescription:
+      "Cálculo e revisão trabalhista em Muriaé/MG e região: verbas, reflexos e encargos calculados a partir dos documentos do caso.",
     summary:
       "Elaboração e revisão de cálculos trabalhistas: verbas, reflexos, encargos e demais valores.",
     situation:
@@ -104,6 +126,9 @@ export const services: Service[] = [
   {
     slug: "analise-documental-e-financeira",
     title: "Análise Documental e Financeira",
+    seoTitle: "Análise Documental e Financeira em Muriaé/MG",
+    seoDescription:
+      "Análise documental e financeira em Muriaé/MG e região: exame de documentos e demonstrativos para identificar inconsistências.",
     summary:
       "Exame de documentos, demonstrativos e dados financeiros para identificar inconsistências ou divergências.",
     situation:

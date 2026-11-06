@@ -4,10 +4,9 @@ import { ScrollReveal } from "./components/scroll-reveal";
 import { WhatsappFloat } from "./components/whatsapp-float";
 import { WhatsappOrigin } from "./components/whatsapp-origin";
 import { services } from "./service-data";
+import { siteUrl } from "./site-config";
 
 const serviceTitles = Object.fromEntries(services.map((service) => [service.slug, service.title]));
-
-const siteUrl = "https://www.fernandacamargopericias.com.br";
 
 export const metadata: Metadata = {
   title: {
@@ -16,18 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Fernanda Camargo Perícias",
   },
   description:
-    "Perícia econômico-financeira, assistência técnica judicial, análise de contratos e cálculos em Muriaé/MG e região.",
-  keywords: [
-    "perícia econômico-financeira",
-    "perícia econômico-financeira em Muriaé",
-    "perícia contratual",
-    "análise de contratos bancários",
-    "análise de juros",
-    "cálculos financeiros",
-    "cálculos trabalhistas",
-    "assistência técnica judicial",
-    "Fernanda Camargo Perícias",
-  ],
+    "Perícia econômico-financeira, assistência técnica judicial, análise de contratos bancários e cálculos em Muriaé/MG e Zona da Mata. Administradora CRA-MG, 15 anos no setor bancário.",
   authors: [{ name: "Fernanda Camargo Perícias" }],
   creator: "Fernanda Camargo Perícias",
   metadataBase: new URL(siteUrl),

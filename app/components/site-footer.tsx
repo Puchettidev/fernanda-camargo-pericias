@@ -65,6 +65,11 @@ export function SiteFooter() {
         <div className="footer-col">
           <h2>Cidades atendidas</h2>
           <p className="footer-cities">{serviceArea.join(" · ")} e região</p>
+          <ul>
+            <li>
+              <Link href="/cidades-atendidas">Ver cidades atendidas</Link>
+            </li>
+          </ul>
         </div>
       </div>
 

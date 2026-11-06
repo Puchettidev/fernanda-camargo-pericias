@@ -22,13 +22,13 @@ import { ServiceIcon } from "./components/service-icon";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { Testimonials } from "./components/testimonials";
+import { businessJsonLd, faqJsonLd, jsonLdScript } from "./seo";
 import { services } from "./service-data";
 import {
   contact,
   createWhatsappUrl,
   lawyerWhatsappMessage,
   profile,
-  siteUrl,
 } from "./site-config";
 
 const whatsappUrl = createWhatsappUrl();
@@ -131,43 +131,12 @@ const faqs: [string, string][] = [
   ],
 ];
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": `${siteUrl}/#professional-service`,
-  name: "Fernanda Camargo Perícias",
-  description:
-    "Perícia econômico-financeira e contratual em Muriaé/MG, com análise de contratos bancários, juros, encargos, cálculos e assistência técnica judicial.",
-  image: `${siteUrl}/capa-fernandinha.png`,
-  logo: `${siteUrl}/icone-fernanda.png`,
-  areaServed: {
-    "@type": "AdministrativeArea",
-    name: "Muriaé, Minas Gerais, Brasil",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Muriaé",
-    addressRegion: "MG",
-    addressCountry: "BR",
-  },
-  telephone: "+55 32 99172-0299",
-  email: "fernandacamargopericias@gmail.com",
-  url: siteUrl,
-  founder: {
-    "@type": "Person",
-    name: "Fernanda Camargo Rodrigues",
-    jobTitle: "Administradora",
-  },
-  serviceType: services.map((service) => service.title),
-};
+const structuredData = [businessJsonLd(), faqJsonLd(faqs)];
 
 export default function Home() {
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(structuredData)} />
 
       <SiteHeader />
 

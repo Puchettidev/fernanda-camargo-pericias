@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { services } from "./service-data";
+import { siteUrl } from "./site-config";
 
-const siteUrl = "https://www.fernandacamargopericias.com.br";
+const lastModified = new Date("2026-11-06");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${siteUrl}/servicos/${service.slug}`,
-    lastModified: new Date("2026-09-29"),
+    lastModified,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
@@ -14,10 +15,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteUrl,
-      lastModified: new Date("2026-09-29"),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     ...servicePages,
+    {
+      url: `${siteUrl}/cidades-atendidas`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
   ];
 }
