@@ -8,6 +8,18 @@ export const contact = {
   email: "fernandacamargopericias@gmail.com",
 };
 
+export const profile = {
+  /** Caminho da foto em /public, ex.: "/fernanda-camargo.jpg". null mostra o placeholder. */
+  // TODO: Fernanda enviar — foto profissional.
+  photo: null as string | null,
+  /** Link do Perfil da Empresa no Google (botão "Perfil no Google" só aparece quando preenchido). */
+  // TODO: Fernanda enviar — link do Perfil da Empresa no Google (ex.: https://g.page/...).
+  googleBusinessUrl: "",
+  /** Link do botão "Ver no mapa". Hoje aponta para Muriaé/MG; trocar pelo link do perfil/endereço. */
+  // TODO: Fernanda enviar — link do Google Maps do perfil ou endereço de atendimento.
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Muria%C3%A9%2C+MG",
+};
+
 /**
  * ID do formulário no Formspree (https://formspree.io), ex.: "xyzabcd".
  * Configure NEXT_PUBLIC_FORMSPREE_ID na Vercel. Sem ele, o formulário

@@ -15,14 +15,22 @@ import {
   MessageCircle,
   Scale,
   ShieldCheck,
+  Star,
 } from "lucide-react";
 import { ContactForm } from "./components/contact-form";
 import { InlineCta } from "./components/inline-cta";
 import { ServiceIcon } from "./components/service-icon";
+import { Testimonials } from "./components/testimonials";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { services } from "./service-data";
-import { contact, createWhatsappUrl, lawyerWhatsappMessage, siteUrl } from "./site-config";
+import {
+  contact,
+  createWhatsappUrl,
+  lawyerWhatsappMessage,
+  profile,
+  siteUrl,
+} from "./site-config";
 
 const whatsappUrl = createWhatsappUrl();
 
@@ -56,15 +64,32 @@ const steps = [
   },
 ];
 
-const qualifications = [
-  ["Graduação em Administração", "UNIFAMINAS - 2014"],
-  ["MBA em Gestão Estratégica de Negócios", "FUMEC - 2018"],
-  [
-    "Pós-graduanda em Perícia Judicial e Extrajudicial",
-    "Estácio de Sá - em andamento, conclusão prevista: 2027",
-  ],
-  ["Registro profissional", "CRA-MG 01-058746/D"],
-  ["Idioma", "Inglês fluente"],
+const timeline = [
+  {
+    year: "15 anos",
+    title: "Atuação no setor bancário",
+    text: "Contratos, operações de crédito, tarifas, encargos e documentação financeira.",
+  },
+  {
+    year: "2014",
+    title: "Graduação em Administração",
+    text: "UNIFAMINAS.",
+  },
+  {
+    year: "2018",
+    title: "MBA em Gestão Estratégica de Negócios",
+    text: "Universidade FUMEC.",
+  },
+  {
+    year: "2027",
+    title: "Pós-graduação em Perícia Judicial e Extrajudicial",
+    text: "Estácio de Sá. Em andamento, com conclusão prevista para 2027.",
+  },
+  {
+    year: "Idioma",
+    title: "Inglês fluente",
+    text: "",
+  },
 ];
 
 const audiences = [
@@ -327,41 +352,82 @@ export default function Home() {
       </section>
 
       <section className="section about" id="sobre">
-        <div className="section-heading">
-          <p className="eyebrow">Sobre a profissional</p>
-          <h2>Experiência profissional aplicada à análise técnica</h2>
-        </div>
-        <div className="about-grid">
-          <div className="text-block">
-            <p>
-              Fernanda Camargo Rodrigues é Administradora, registrada no CRA-MG,
-              com MBA em Gestão Estratégica de Negócios e Pós-graduanda em
-              Perícia Judicial e Extrajudicial.
-            </p>
-            <p>
-              Possui 15 anos de experiência no setor bancário, com atuação direta
-              em operações financeiras, contratos, produtos bancários, crédito,
-              análise documental e rotinas administrativas e operacionais.
-            </p>
-            <p>
-              Sua trajetória proporciona conhecimento prático sobre contratos,
-              operações bancárias, encargos, tarifas e informações financeiras,
-              aplicado atualmente à análise econômico-financeira, contratual e
-              assistência técnica.
-            </p>
-          </div>
-          <aside className="about-card">
-            <span className="card-kicker">Atuação pautada por</span>
-            <ul>
+        <div className="about-layout">
+          <figure className="about-photo">
+            {profile.photo ? (
+              <Image
+                src={profile.photo}
+                alt="Fernanda Camargo Rodrigues, administradora e perita econômico-financeira"
+                width={640}
+                height={800}
+                sizes="(max-width: 980px) 100vw, 380px"
+              />
+            ) : (
+              // TODO: Fernanda enviar — foto profissional (vertical, 4:5, fundo neutro). Salvar em /public e preencher profile.photo em site-config.ts
+              <div className="about-photo-placeholder" role="img" aria-label="Foto da Fernanda em breve">
+                <span>FC</span>
+              </div>
+            )}
+            <figcaption>
+              <strong>Fernanda Camargo Rodrigues</strong>
+              <span>Administradora · CRA-MG 01-058746/D</span>
+            </figcaption>
+          </figure>
+
+          <div className="about-content">
+            <p className="eyebrow">Sobre a profissional</p>
+            <h2>Quem faz a análise do seu caso</h2>
+            <div className="text-block">
+              <p>
+                Fernanda Camargo Rodrigues é Administradora registrada no CRA-MG,
+                com MBA em Gestão Estratégica de Negócios e pós-graduação em
+                andamento em Perícia Judicial e Extrajudicial.
+              </p>
+              <p>
+                Foram 15 anos no setor bancário, lidando diretamente com
+                contratos, crédito, tarifas, encargos e documentação financeira.
+                Essa vivência hoje embasa seu trabalho de perícia e assistência
+                técnica.
+              </p>
+            </div>
+            <ul className="values-list" aria-label="Princípios de atuação">
               <li>Análise criteriosa</li>
               <li>Organização</li>
               <li>Responsabilidade</li>
               <li>Sigilo profissional</li>
               <li>Imparcialidade</li>
             </ul>
-          </aside>
+          </div>
         </div>
       </section>
+
+      <section className="section credentials" id="formacao">
+        <div className="section-heading compact">
+          <p className="eyebrow">Formação e registro</p>
+          <h2>Trajetória e qualificação</h2>
+        </div>
+        <div className="credentials-layout">
+          <article className="registry-card">
+            <BadgeCheck size={34} strokeWidth={1.7} aria-hidden="true" />
+            <span className="card-kicker">Registro profissional</span>
+            <strong>CRA-MG 01-058746/D</strong>
+            <p>Administradora registrada no Conselho Regional de Administração de Minas Gerais.</p>
+          </article>
+          <ol className="timeline">
+            {timeline.map((item) => (
+              <li key={item.title}>
+                <span className="timeline-year">{item.year}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  {item.text ? <p>{item.text}</p> : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <Testimonials />
 
       <section className="section trust">
         <div className="section-heading compact">
@@ -481,21 +547,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section qualifications">
-        <div className="section-heading compact">
-          <p className="eyebrow">Formação e qualificação</p>
-          <h2>Base acadêmica e registro profissional</h2>
-        </div>
-        <div className="qualification-grid">
-          {qualifications.map(([title, text]) => (
-            <article key={title}>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <InlineCta
         id="cta-processo"
         title="Prefere conversar antes de enviar qualquer documento?"
@@ -544,6 +595,18 @@ export default function Home() {
               <span>Muriaé - MG</span>
               <a href={`tel:${contact.phoneHref}`}>{contact.phoneDisplay}</a>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              <span className="address-links">
+                <a href={profile.mapsUrl} target="_blank" rel="noreferrer">
+                  <MapPin size={17} strokeWidth={2} aria-hidden="true" />
+                  Ver no mapa
+                </a>
+                {profile.googleBusinessUrl ? (
+                  <a href={profile.googleBusinessUrl} target="_blank" rel="noreferrer">
+                    <Star size={17} strokeWidth={2} aria-hidden="true" />
+                    Perfil no Google
+                  </a>
+                ) : null}
+              </span>
               <small>
                 Atendimento com sigilo profissional e tratamento responsável das
                 informações compartilhadas.
