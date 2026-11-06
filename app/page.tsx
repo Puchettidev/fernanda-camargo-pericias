@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  BadgeCheck,
   Banknote,
   ClipboardCheck,
+  Clock,
+  FileUp,
+  Gavel,
+  Landmark,
   CircleHelp,
   FileSearch,
   MapPin,
@@ -11,11 +16,13 @@ import {
   Scale,
   ShieldCheck,
 } from "lucide-react";
+import { ContactForm } from "./components/contact-form";
+import { InlineCta } from "./components/inline-cta";
 import { ServiceIcon } from "./components/service-icon";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { services } from "./service-data";
-import { contact, createWhatsappUrl, siteUrl } from "./site-config";
+import { contact, createWhatsappUrl, lawyerWhatsappMessage, siteUrl } from "./site-config";
 
 const whatsappUrl = createWhatsappUrl();
 
@@ -155,24 +162,42 @@ export default function Home() {
 
       <section className="hero section" id="inicio">
         <div className="hero-copy">
-          <p className="eyebrow">Fernanda Camargo Perícias</p>
-          <h1>Perícia econômico-financeira e assistência técnica em Muriaé e região</h1>
+          <p className="eyebrow">Perícia econômico-financeira · Muriaé/MG e região</p>
+          <h1>Dúvidas sobre juros, contrato bancário ou cálculo em um processo?</h1>
           <p className="hero-subtitle">
-            Apoio técnico para advogados, escritórios, empresas e pessoas físicas
-            em demandas judiciais e extrajudiciais.
+            Assistência técnica e perícia para advogados, empresas e pessoas
+            físicas. Leitura de contratos, juros, encargos e valores, com
+            conclusões claras e fundamentadas.
           </p>
-          <div className="hero-meta">
-            <span>15 anos de experiência no setor bancário</span>
-            <span>CRA-MG 01-058746/D</span>
-          </div>
           <div className="hero-actions">
-            <a className="button primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Falar com a Fernanda
+            <a
+              className="button primary large hero-cta"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-cta="hero"
+            >
+              <MessageCircle size={20} strokeWidth={2} aria-hidden="true" />
+              Enviar minha dúvida pelo WhatsApp
             </a>
-            <a className="button secondary" href="#servicos">
+            <a className="button secondary large" href="#servicos">
               Ver serviços
             </a>
           </div>
+          <ul className="hero-badges" aria-label="Credenciais">
+            <li>
+              <Landmark size={18} strokeWidth={1.9} aria-hidden="true" />
+              15 anos no setor bancário
+            </li>
+            <li>
+              <BadgeCheck size={18} strokeWidth={1.9} aria-hidden="true" />
+              Administradora · CRA-MG 01-058746/D
+            </li>
+            <li>
+              <ShieldCheck size={18} strokeWidth={1.9} aria-hidden="true" />
+              Sigilo profissional
+            </li>
+          </ul>
         </div>
         <div className="hero-visual">
           <Image
@@ -185,51 +210,14 @@ export default function Home() {
           />
           <div className="hero-proof" aria-label="Credenciais profissionais">
             <div>
-              <strong>15 anos</strong>
-              <span>de experiência no setor bancário</span>
+              <strong>Judicial</strong>
+              <span>e extrajudicial</span>
             </div>
             <div>
-              <strong>CRA-MG</strong>
-              <span>01-058746/D</span>
+              <strong>Muriaé</strong>
+              <span>e região · Zona da Mata</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section about" id="sobre">
-        <div className="section-heading">
-          <p className="eyebrow">Sobre a profissional</p>
-          <h2>Experiência profissional aplicada à análise técnica</h2>
-        </div>
-        <div className="about-grid">
-          <div className="text-block">
-            <p>
-              Fernanda Camargo Rodrigues é Administradora, registrada no CRA-MG,
-              com MBA em Gestão Estratégica de Negócios e Pós-graduanda em
-              Perícia Judicial e Extrajudicial.
-            </p>
-            <p>
-              Possui 15 anos de experiência no setor bancário, com atuação direta
-              em operações financeiras, contratos, produtos bancários, crédito,
-              análise documental e rotinas administrativas e operacionais.
-            </p>
-            <p>
-              Sua trajetória proporciona conhecimento prático sobre contratos,
-              operações bancárias, encargos, tarifas e informações financeiras,
-              aplicado atualmente à análise econômico-financeira, contratual e
-              assistência técnica.
-            </p>
-          </div>
-          <aside className="about-card">
-            <span className="card-kicker">Atuação pautada por</span>
-            <ul>
-              <li>Análise criteriosa</li>
-              <li>Organização</li>
-              <li>Responsabilidade</li>
-              <li>Sigilo profissional</li>
-              <li>Imparcialidade</li>
-            </ul>
-          </aside>
         </div>
       </section>
 
@@ -273,12 +261,105 @@ export default function Home() {
               </article>
           ))}
         </div>
-        <div className="section-cta">
-          <p>Tem uma demanda envolvendo juros, contratos ou valores bancários?</p>
-          <a className="button primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Conversar com Fernanda
-            <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
+      </section>
+
+      <InlineCta
+        id="cta-servicos"
+        title="Não sabe qual serviço se aplica ao seu caso?"
+        text="Descreva a situação em poucas linhas. A Fernanda indica o caminho e os documentos necessários."
+        buttonLabel="Descrever meu caso"
+      />
+
+      <section className="section lawyers" id="advogados">
+        <div className="section-heading">
+          <p className="eyebrow">Para advogados e escritórios</p>
+          <h2>Assistência técnica para o seu processo</h2>
+          <p>
+            Suporte técnico em questões financeiras e contratuais, do exame dos
+            documentos até a organização das conclusões.
+          </p>
+        </div>
+        <div className="lawyers-grid">
+          <article>
+            <Gavel size={28} strokeWidth={1.8} aria-hidden="true" />
+            <h3>Como ajuda no processo</h3>
+            <ul>
+              <li>Leitura técnica de contratos, cálculos e demonstrativos.</li>
+              {/* TODO: Fernanda confirmar se atua na formulação de quesitos e na análise do laudo do perito do juízo */}
+              <li>Apoio na formulação de quesitos e na análise do laudo pericial.</li>
+              <li>Conclusões organizadas para subsidiar a argumentação.</li>
+            </ul>
+          </article>
+          <article>
+            <Clock size={28} strokeWidth={1.8} aria-hidden="true" />
+            <h3>Prazo de resposta</h3>
+            {/* TODO: Fernanda enviar — prazo real de retorno do primeiro contato (ex.: "em até 1 dia útil") */}
+            <p>
+              O escopo e o prazo de entrega são definidos no primeiro contato,
+              considerando os prazos do processo.
+            </p>
+          </article>
+          <article>
+            <FileUp size={28} strokeWidth={1.8} aria-hidden="true" />
+            <h3>Envio de documentos</h3>
+            <p>
+              Petição, laudo, contratos, extratos e planilhas podem ser enviados
+              pelo WhatsApp ou por e-mail, em PDF, imagem ou planilha.
+            </p>
+          </article>
+        </div>
+        <div className="lawyers-actions">
+          <a
+            className="button primary large"
+            href={createWhatsappUrl(undefined, lawyerWhatsappMessage)}
+            target="_blank"
+            rel="noreferrer"
+            data-cta="advogados"
+          >
+            <MessageCircle size={19} strokeWidth={2} aria-hidden="true" />
+            Falar sobre um processo
           </a>
+          <a className="text-link" href={`mailto:${contact.email}`}>
+            Enviar documentos por e-mail
+            <ArrowRight size={17} strokeWidth={2} aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section className="section about" id="sobre">
+        <div className="section-heading">
+          <p className="eyebrow">Sobre a profissional</p>
+          <h2>Experiência profissional aplicada à análise técnica</h2>
+        </div>
+        <div className="about-grid">
+          <div className="text-block">
+            <p>
+              Fernanda Camargo Rodrigues é Administradora, registrada no CRA-MG,
+              com MBA em Gestão Estratégica de Negócios e Pós-graduanda em
+              Perícia Judicial e Extrajudicial.
+            </p>
+            <p>
+              Possui 15 anos de experiência no setor bancário, com atuação direta
+              em operações financeiras, contratos, produtos bancários, crédito,
+              análise documental e rotinas administrativas e operacionais.
+            </p>
+            <p>
+              Sua trajetória proporciona conhecimento prático sobre contratos,
+              operações bancárias, encargos, tarifas e informações financeiras,
+              aplicado atualmente à análise econômico-financeira, contratual e
+              assistência técnica.
+            </p>
+          </div>
+          <aside className="about-card">
+            <span className="card-kicker">Atuação pautada por</span>
+            <ul>
+              <li>Análise criteriosa</li>
+              <li>Organização</li>
+              <li>Responsabilidade</li>
+              <li>Sigilo profissional</li>
+              <li>Imparcialidade</li>
+            </ul>
+          </aside>
         </div>
       </section>
 
@@ -326,6 +407,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <InlineCta
+        id="cta-documentos"
+        tone="dark"
+        title="Já tem o contrato ou o extrato em mãos?"
+        text="Envie os documentos para uma avaliação inicial da demanda."
+        buttonLabel="Enviar documentos"
+        message="Olá, Fernanda. Tenho documentos de um caso e gostaria de uma avaliação inicial."
+      />
 
       <section className="section dual">
         <div className="section-heading">
@@ -406,6 +496,12 @@ export default function Home() {
         </div>
       </section>
 
+      <InlineCta
+        id="cta-processo"
+        title="Prefere conversar antes de enviar qualquer documento?"
+        buttonLabel="Tirar uma dúvida rápida"
+      />
+
       <section className="section faq">
         <div className="section-heading compact">
           <p className="eyebrow">Perguntas frequentes</p>
@@ -426,37 +522,43 @@ export default function Home() {
 
       <section className="contact-section" id="contato">
         <div className="section contact-grid">
-          <div>
+          <div className="contact-copy">
             <p className="eyebrow">Contato</p>
-            <h2>Precisa de uma análise técnica?</h2>
+            <h2>Apresente sua demanda</h2>
             <p>
-              Entre em contato para apresentar sua demanda e verificar a
-              possibilidade de atuação técnica no caso.
+              Conte brevemente o caso. O primeiro contato serve para entender a
+              necessidade e indicar os documentos.
             </p>
-            <a className="button primary large" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Falar com Fernanda pelo WhatsApp
+            <a
+              className="button primary large"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-cta="contato"
+            >
+              <MessageCircle size={19} strokeWidth={2} aria-hidden="true" />
+              Falar pelo WhatsApp
             </a>
+            <address>
+              <strong>Fernanda Camargo Perícias</strong>
+              <span>Muriaé - MG</span>
+              <a href={`tel:${contact.phoneHref}`}>{contact.phoneDisplay}</a>
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              <small>
+                Atendimento com sigilo profissional e tratamento responsável das
+                informações compartilhadas.
+              </small>
+            </address>
           </div>
-          <address>
-            <strong>Fernanda Camargo Perícias</strong>
-            <span>Muriaé - MG</span>
-            <a href={`tel:${contact.phoneHref}`}>{contact.phoneDisplay}</a>
-            <a href={`mailto:${contact.email}`}>
-              {contact.email}
-            </a>
-            <small>
-              Atendimento com sigilo profissional e tratamento responsável das
-              informações compartilhadas.
-            </small>
-          </address>
+          <ContactForm demandOptions={services.map((service) => service.title)} />
         </div>
       </section>
 
       <SiteFooter />
 
-      <a className="floating-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="Falar com Fernanda pelo WhatsApp">
-        <MessageCircle size={25} strokeWidth={2.1} aria-hidden="true" />
-      </a>
     </main>
+
   );
+
 }
+

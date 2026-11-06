@@ -13,13 +13,19 @@ export function SiteHeader() {
         </span>
       </Link>
       <nav className="desktop-nav" aria-label="Navegação principal">
-        <Link href="/#sobre">Sobre</Link>
         <Link href="/#servicos">Serviços</Link>
-        <Link href="/#experiencia">Experiência</Link>
+        <Link href="/#advogados">Para advogados</Link>
+        <Link href="/#sobre">Sobre</Link>
         <Link href="/#como-funciona">Como funciona</Link>
         <Link href="/#contato">Contato</Link>
       </nav>
-      <a className="header-cta" href={createWhatsappUrl()} target="_blank" rel="noreferrer">
+      <a
+        className="header-cta"
+        href={createWhatsappUrl()}
+        target="_blank"
+        rel="noreferrer"
+        data-cta="cabecalho"
+      >
         Falar com a Fernanda
       </a>
     </header>

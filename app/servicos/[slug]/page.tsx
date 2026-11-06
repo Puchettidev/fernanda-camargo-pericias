@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
+import { InlineCta } from "../../components/inline-cta";
 import { ServiceIcon } from "../../components/service-icon";
 import { SiteFooter } from "../../components/site-footer";
 import { SiteHeader } from "../../components/site-header";
@@ -157,6 +158,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <span>CRA-MG 01-058746/D</span>
         </aside>
       </section>
+
+      <InlineCta
+        id="cta-servico-meio"
+        tone="dark"
+        title="Quer saber se este serviço se aplica ao seu caso?"
+        text="Envie uma mensagem com um resumo da situação."
+        buttonLabel="Perguntar pelo WhatsApp"
+        message={`Olá, Fernanda. Gostaria de saber se ${service.title} se aplica ao meu caso.`}
+      />
 
       <section className="related-services">
         <div className="section related-services-inner">

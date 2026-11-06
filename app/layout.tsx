@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { WhatsappFloat } from "./components/whatsapp-float";
+import { WhatsappOrigin } from "./components/whatsapp-origin";
+import { services } from "./service-data";
+
+const serviceTitles = Object.fromEntries(services.map((service) => [service.slug, service.title]));
 
 const siteUrl = "https://www.fernandacamargopericias.com.br";
 
@@ -84,7 +89,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        {children}
+        <WhatsappFloat serviceTitles={serviceTitles} />
+        <WhatsappOrigin />
+      </body>
     </html>
   );
 }
