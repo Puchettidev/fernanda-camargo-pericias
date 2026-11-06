@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ScrollReveal } from "./components/scroll-reveal";
 import { WhatsappFloat } from "./components/whatsapp-float";
 import { WhatsappOrigin } from "./components/whatsapp-origin";
 import { services } from "./service-data";
@@ -93,6 +94,7 @@ export default function RootLayout({
         {children}
         <WhatsappFloat serviceTitles={serviceTitles} />
         <WhatsappOrigin />
+        <ScrollReveal />
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ import { createWhatsappUrl } from "../site-config";
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <Link href="/#inicio" className="brand" aria-label="Fernanda Camargo Perícias - início">
+      <Link href="/" className="brand">
         <Image src="/icone-fernanda.png" alt="" width={44} height={44} priority />
         <span>
           <strong>Fernanda Camargo</strong>

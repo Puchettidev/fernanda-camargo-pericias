@@ -4,25 +4,24 @@ import {
   ArrowRight,
   BadgeCheck,
   Banknote,
-  ClipboardCheck,
+  CircleCheck,
+  CircleHelp,
   Clock,
+  FileSearch,
   FileUp,
   Gavel,
   Landmark,
-  CircleHelp,
-  FileSearch,
   MapPin,
   MessageCircle,
-  Scale,
   ShieldCheck,
   Star,
 } from "lucide-react";
 import { ContactForm } from "./components/contact-form";
 import { InlineCta } from "./components/inline-cta";
 import { ServiceIcon } from "./components/service-icon";
-import { Testimonials } from "./components/testimonials";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { Testimonials } from "./components/testimonials";
 import { services } from "./service-data";
 import {
   contact,
@@ -35,32 +34,53 @@ import {
 const whatsappUrl = createWhatsappUrl();
 
 const bankingExperience = [
-  "Produtos bancários",
   "Operações de crédito",
-  "Contratos",
+  "Contratos bancários",
   "Juros, tarifas e encargos",
   "Documentação financeira",
-  "Procedimentos operacionais",
-  "Controles internos",
-  "Análise de inconsistências",
+  "Procedimentos e controles internos",
+  "Identificação de inconsistências",
+];
+
+const trustMarkers = [
+  {
+    title: "Sigilo profissional",
+    text: "Documentos e informações tratados com responsabilidade.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Método e fundamentação",
+    text: "Conclusões organizadas e justificadas, sem antecipar resultados.",
+    icon: FileSearch,
+  },
+  {
+    title: "Vivência bancária",
+    text: "Prática real com crédito, contratos, tarifas e encargos.",
+    icon: Banknote,
+  },
+  {
+    title: "Atuação regional",
+    text: "Muriaé/MG e região da Zona da Mata.",
+    icon: MapPin,
+  },
 ];
 
 const steps = [
   {
-    title: "Contato inicial",
-    text: "O cliente apresenta a necessidade e os documentos disponíveis.",
+    title: "Contato",
+    text: "Você descreve a situação e informa os documentos disponíveis.",
   },
   {
-    title: "Análise preliminar",
-    text: "É realizada uma avaliação inicial da demanda e da documentação necessária.",
+    title: "Avaliação inicial",
+    text: "Definição do escopo, dos documentos necessários e do prazo.",
   },
   {
-    title: "Análise técnica",
-    text: "Documentos, contratos, cálculos e informações financeiras são examinados de forma criteriosa.",
+    title: "Análise",
+    text: "Exame dos contratos, cálculos e informações financeiras.",
   },
   {
-    title: "Entrega técnica",
-    text: "Apresentação do trabalho técnico conforme o serviço contratado.",
+    title: "Entrega",
+    text: "Apresentação do trabalho conforme o serviço contratado.",
   },
 ];
 
@@ -92,54 +112,22 @@ const timeline = [
   },
 ];
 
-const audiences = [
-  "Advogados",
-  "Escritórios de advocacia",
-  "Empresas",
-  "Pessoas físicas",
-  "Profissionais envolvidos em demandas judiciais",
-  "Partes interessadas em análise técnica de contratos ou operações financeiras",
-];
-
-const trustMarkers = [
-  {
-    title: "Sigilo profissional",
-    text: "Tratamento responsável das informações e documentos compartilhados.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Análise criteriosa",
-    text: "Avaliação técnica com organização, método e fundamentação.",
-    icon: FileSearch,
-  },
-  {
-    title: "Experiência bancária",
-    text: "Vivência prática em contratos, crédito, encargos, tarifas e operações.",
-    icon: Banknote,
-  },
-  {
-    title: "Atuação regional",
-    text: "Atendimento em Muriaé - MG e região, conforme a natureza da demanda.",
-    icon: MapPin,
-  },
-];
-
-const faqs = [
+const faqs: [string, string][] = [
   [
     "Quais contratos podem ser analisados?",
-    "Contratos bancários de empréstimo pessoal, empresarial, habitacional, financiamento de veículos e outras operações financeiras.",
+    "Empréstimos pessoais e empresariais, financiamentos habitacionais e de veículos, entre outras operações financeiras.",
   ],
   [
     "O serviço pode ser judicial e extrajudicial?",
-    "Sim. A atuação pode apoiar demandas judiciais ou análises realizadas fora do processo, conforme a necessidade apresentada.",
+    "Sim. O trabalho pode apoiar um processo em andamento ou uma análise feita antes ou fora dele.",
   ],
   [
     "Quais documentos são necessários?",
-    "A documentação depende do caso. Em geral, contratos, demonstrativos, extratos, planilhas, comprovantes e informações financeiras ajudam na análise inicial.",
+    "Depende do caso. Em geral: contrato, demonstrativos, extratos, planilhas e comprovantes.",
   ],
   [
     "Como começa o atendimento?",
-    "O primeiro contato serve para entender a demanda, verificar os documentos disponíveis e orientar os próximos passos técnicos.",
+    "Por uma conversa para entender a demanda, verificar os documentos disponíveis e definir os próximos passos.",
   ],
 ];
 
@@ -170,9 +158,7 @@ const structuredData = {
     name: "Fernanda Camargo Rodrigues",
     jobTitle: "Administradora",
   },
-  serviceType: [
-    ...services.map((service) => service.title),
-  ],
+  serviceType: services.map((service) => service.title),
 };
 
 export default function Home() {
@@ -228,12 +214,13 @@ export default function Home() {
           <Image
             className="hero-logo"
             src="/icone-fernanda.png"
-            alt="Símbolo Fernanda Camargo Perícias"
-            width={720}
-            height={720}
+            alt="Logotipo Fernanda Camargo Perícias"
+            width={460}
+            height={460}
+            sizes="(max-width: 680px) 190px, 230px"
             priority
           />
-          <div className="hero-proof" aria-label="Credenciais profissionais">
+          <div className="hero-proof">
             <div>
               <strong>Judicial</strong>
               <span>e extrajudicial</span>
@@ -249,41 +236,41 @@ export default function Home() {
       <section className="section services" id="servicos">
         <div className="section-heading">
           <p className="eyebrow">Serviços</p>
-          <h2>Análises técnicas para diferentes necessidades</h2>
-          <p>
-            Entenda o objetivo de cada serviço, quando ele pode ser solicitado e
-            como apresentar sua demanda à Fernanda.
-          </p>
+          <h2>Como a Fernanda pode ajudar</h2>
+          <p>Escolha o serviço mais próximo da sua situação ou fale direto pelo WhatsApp.</p>
         </div>
         <div className="service-grid">
           {services.map((service) => (
-              <article className="service-card" key={service.slug}>
-                <div className="service-icon">
-                  <ServiceIcon name={service.icon} />
-                </div>
-                <div className="service-card-content">
-                <h3>{service.title}</h3>
-                <p>{service.summary}</p>
-                <div className="service-situation">
-                  <strong>Quando solicitar</strong>
-                  <p>{service.situation}</p>
-                </div>
-                <div className="service-actions">
-                  <Link className="text-link" href={`/servicos/${service.slug}`}>
-                    Entender o serviço
-                    <ArrowRight size={17} strokeWidth={2} aria-hidden="true" />
-                  </Link>
-                  <a
-                    className="text-link secondary-link"
-                    href={createWhatsappUrl(service.title)}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Falar pelo WhatsApp
-                  </a>
-                </div>
-                </div>
-              </article>
+            <article className="service-card" key={service.slug}>
+              <div className="service-icon">
+                <ServiceIcon name={service.icon} size={28} />
+              </div>
+              <h3>
+                <Link href={`/servicos/${service.slug}`}>{service.title}</Link>
+              </h3>
+              <p>{service.summary}</p>
+              <div className="service-actions">
+                <Link
+                  className="text-link"
+                  href={`/servicos/${service.slug}`}
+                  aria-label={`Saiba mais sobre ${service.title}`}
+                >
+                  Saiba mais
+                  <ArrowRight size={17} strokeWidth={2} aria-hidden="true" />
+                </Link>
+                <a
+                  className="text-link whatsapp-link"
+                  href={createWhatsappUrl(service.title)}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cta={`card-${service.slug}`}
+                  aria-label={`Falar pelo WhatsApp sobre ${service.title}`}
+                >
+                  <MessageCircle size={17} strokeWidth={2} aria-hidden="true" />
+                  WhatsApp
+                </a>
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -291,7 +278,7 @@ export default function Home() {
       <InlineCta
         id="cta-servicos"
         title="Não sabe qual serviço se aplica ao seu caso?"
-        text="Descreva a situação em poucas linhas. A Fernanda indica o caminho e os documentos necessários."
+        text="Descreva a situação em poucas linhas. A Fernanda indica o caminho e os documentos."
         buttonLabel="Descrever meu caso"
       />
 
@@ -299,17 +286,14 @@ export default function Home() {
         <div className="section-heading">
           <p className="eyebrow">Para advogados e escritórios</p>
           <h2>Assistência técnica para o seu processo</h2>
-          <p>
-            Suporte técnico em questões financeiras e contratuais, do exame dos
-            documentos até a organização das conclusões.
-          </p>
+          <p>Suporte em questões financeiras e contratuais, do exame dos documentos às conclusões.</p>
         </div>
         <div className="lawyers-grid">
           <article>
             <Gavel size={28} strokeWidth={1.8} aria-hidden="true" />
             <h3>Como ajuda no processo</h3>
             <ul>
-              <li>Leitura técnica de contratos, cálculos e demonstrativos.</li>
+              <li>Leitura de contratos, cálculos e demonstrativos.</li>
               {/* TODO: Fernanda confirmar se atua na formulação de quesitos e na análise do laudo do perito do juízo */}
               <li>Apoio na formulação de quesitos e na análise do laudo pericial.</li>
               <li>Conclusões organizadas para subsidiar a argumentação.</li>
@@ -320,7 +304,7 @@ export default function Home() {
             <h3>Prazo de resposta</h3>
             {/* TODO: Fernanda enviar — prazo real de retorno do primeiro contato (ex.: "em até 1 dia útil") */}
             <p>
-              O escopo e o prazo de entrega são definidos no primeiro contato,
+              Escopo e prazo de entrega são definidos no primeiro contato,
               considerando os prazos do processo.
             </p>
           </article>
@@ -328,8 +312,8 @@ export default function Home() {
             <FileUp size={28} strokeWidth={1.8} aria-hidden="true" />
             <h3>Envio de documentos</h3>
             <p>
-              Petição, laudo, contratos, extratos e planilhas podem ser enviados
-              pelo WhatsApp ou por e-mail, em PDF, imagem ou planilha.
+              Petição, laudo, contratos, extratos e planilhas pelo WhatsApp ou
+              por e-mail, em PDF, imagem ou planilha.
             </p>
           </article>
         </div>
@@ -351,6 +335,57 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="experience-band" id="experiencia">
+        <div className="section experience-content">
+          <div>
+            <p className="eyebrow">Diferencial</p>
+            <h2>15 anos dentro do setor bancário</h2>
+            <p>
+              Quem já trabalhou com contratos e operações de crédito no dia a dia
+              sabe onde procurar. Essa vivência orienta cada análise.
+            </p>
+          </div>
+          <ul className="data-card" aria-label="Áreas de experiência bancária">
+            {bankingExperience.map((item) => (
+              <li key={item}>
+                <CircleCheck size={18} strokeWidth={1.9} aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section trust" aria-labelledby="trust-title">
+        <h2 className="visually-hidden" id="trust-title">
+          Compromissos de atuação
+        </h2>
+        <div className="trust-grid">
+          {trustMarkers.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title}>
+                <Icon size={26} strokeWidth={1.8} aria-hidden="true" />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <InlineCta
+        id="cta-documentos"
+        tone="dark"
+        title="Já tem o contrato ou o extrato em mãos?"
+        text="Envie os documentos para uma avaliação inicial da demanda."
+        buttonLabel="Enviar documentos"
+        message="Olá, Fernanda. Tenho documentos de um caso e gostaria de uma avaliação inicial."
+      />
+
       <section className="section about" id="sobre">
         <div className="about-layout">
           <figure className="about-photo">
@@ -360,7 +395,7 @@ export default function Home() {
                 alt="Fernanda Camargo Rodrigues, administradora e perita econômico-financeira"
                 width={640}
                 height={800}
-                sizes="(max-width: 980px) 100vw, 380px"
+                sizes="(max-width: 980px) 360px, 380px"
               />
             ) : (
               // TODO: Fernanda enviar — foto profissional (vertical, 4:5, fundo neutro). Salvar em /public e preencher profile.photo em site-config.ts
@@ -409,8 +444,8 @@ export default function Home() {
         <div className="credentials-layout">
           <article className="registry-card">
             <BadgeCheck size={34} strokeWidth={1.7} aria-hidden="true" />
-            <span className="card-kicker">Registro profissional</span>
-            <strong>CRA-MG 01-058746/D</strong>
+            <span className="card-kicker">Registro profissional · CRA-MG</span>
+            <strong>01-058746/D</strong>
             <p>Administradora registrada no Conselho Regional de Administração de Minas Gerais.</p>
           </article>
           <ol className="timeline">
@@ -429,134 +464,32 @@ export default function Home() {
 
       <Testimonials />
 
-      <section className="section trust">
-        <div className="section-heading compact">
-          <p className="eyebrow">Confiança técnica</p>
-          <h2>Base para uma análise segura e bem documentada</h2>
-        </div>
-        <div className="trust-grid">
-          {trustMarkers.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <article key={item.title}>
-                <Icon size={26} strokeWidth={1.8} aria-hidden="true" />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="experience-band" id="experiencia">
-        <div className="section experience-content">
-          <div>
-            <p className="eyebrow">Diferencial técnico</p>
-            <h2>15 anos de experiência no setor bancário</h2>
-            <p>
-              A vivência profissional em ambiente bancário oferece repertório
-              prático para compreender documentos, contratos, operações de
-              crédito, procedimentos internos e informações financeiras com
-              profundidade e responsabilidade.
-            </p>
-          </div>
-          <div className="data-card" aria-label="Áreas de experiência bancária">
-            {bankingExperience.map((item) => (
-              <span key={item}>
-                <ClipboardCheck size={18} strokeWidth={1.8} aria-hidden="true" />
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <InlineCta
-        id="cta-documentos"
-        tone="dark"
-        title="Já tem o contrato ou o extrato em mãos?"
-        text="Envie os documentos para uma avaliação inicial da demanda."
-        buttonLabel="Enviar documentos"
-        message="Olá, Fernanda. Tenho documentos de um caso e gostaria de uma avaliação inicial."
-      />
-
-      <section className="section dual">
-        <div className="section-heading">
-          <p className="eyebrow">Judicial e extrajudicial</p>
-          <h2>Análise técnica para diferentes contextos</h2>
-        </div>
-        <div className="dual-grid">
-          <article>
-            <span className="number">
-              <Scale size={30} strokeWidth={1.7} aria-hidden="true" />
-              01
-            </span>
-            <h3>Perícia Judicial</h3>
-            <p>
-              A análise técnica pode auxiliar na compreensão de questões
-              financeiras e contratuais existentes em processos judiciais,
-              oferecendo apoio fundamentado às partes e seus representantes.
-            </p>
-          </article>
-          <article>
-            <span className="number">
-              <FileSearch size={30} strokeWidth={1.7} aria-hidden="true" />
-              02
-            </span>
-            <h3>Perícia Extrajudicial</h3>
-            <p>
-              Análises técnicas podem ser utilizadas para conferir contratos,
-              operações, valores e documentos fora do ambiente judicial, conforme
-              a necessidade apresentada.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="section audience">
-        <div className="section-heading compact">
-          <p className="eyebrow">Para quem são os serviços</p>
-          <h2>Atendimento técnico conforme a natureza da demanda</h2>
-        </div>
-        <div className="audience-list">
-          {audiences.map((item) => (
-            <span key={item}>
-              <ClipboardCheck size={17} strokeWidth={1.8} aria-hidden="true" />
-              {item}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      <section className="section process" id="como-funciona">
-        <div className="section-heading">
-          <p className="eyebrow">Como funciona</p>
-          <h2>Um processo claro, organizado e responsável</h2>
-        </div>
-        <div className="steps">
-          {steps.map((step, index) => (
-            <article key={step.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <InlineCta
-        id="cta-processo"
+        id="cta-conversa"
         title="Prefere conversar antes de enviar qualquer documento?"
         buttonLabel="Tirar uma dúvida rápida"
       />
 
-      <section className="section faq">
+      <section className="section process" id="como-funciona">
+        <div className="section-heading">
+          <p className="eyebrow">Como funciona</p>
+          <h2>Do primeiro contato à entrega</h2>
+        </div>
+        <ol className="steps">
+          {steps.map((step, index) => (
+            <li key={step.title}>
+              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="section faq" id="perguntas-frequentes">
         <div className="section-heading compact">
           <p className="eyebrow">Perguntas frequentes</p>
-          <h2>Dúvidas comuns antes da análise técnica</h2>
+          <h2>Antes de começar</h2>
         </div>
         <div className="faq-list">
           {faqs.map(([question, answer]) => (
@@ -618,10 +551,6 @@ export default function Home() {
       </section>
 
       <SiteFooter />
-
     </main>
-
   );
-
 }
-

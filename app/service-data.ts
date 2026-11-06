@@ -21,7 +21,7 @@ export const services: Service[] = [
     slug: "assistencia-tecnica-judicial",
     title: "Assistência Técnica Judicial",
     summary:
-      "Apoio técnico às partes e aos seus representantes em demandas que envolvam questões econômico-financeiras e contratuais.",
+      "Apoio técnico às partes e aos advogados em processos com questões financeiras e contratuais.",
     situation:
       "Pode ser solicitada quando uma demanda judicial exige leitura técnica de cálculos, documentos, contratos ou informações financeiras.",
     details: [
@@ -35,7 +35,7 @@ export const services: Service[] = [
     slug: "pericia-economico-financeira",
     title: "Perícia Econômico-Financeira",
     summary:
-      "Análise técnica de juros, cálculos, valores e documentos relacionados a contratos e operações financeiras.",
+      "Conferência de juros, encargos, cálculos e valores em contratos e operações financeiras.",
     situation:
       "Indicada quando é necessário compreender ou conferir empréstimos pessoais e empresariais, contratos habitacionais, financiamentos de veículos, cálculos trabalhistas e outras operações.",
     details: [
@@ -49,7 +49,7 @@ export const services: Service[] = [
     slug: "pericia-contratual",
     title: "Perícia Contratual",
     summary:
-      "Análise técnica de contratos, condições financeiras, obrigações, encargos e informações relacionadas à execução contratual.",
+      "Exame das cláusulas financeiras, obrigações, encargos e da evolução dos valores de um contrato.",
     situation:
       "Pode ser solicitada quando existem dúvidas sobre cláusulas financeiras, evolução dos valores ou cumprimento das condições registradas em contrato.",
     details: [
@@ -63,7 +63,7 @@ export const services: Service[] = [
     slug: "contratos-bancarios",
     title: "Contratos Bancários",
     summary:
-      "Análise de contratos e operações bancárias com atenção a juros, encargos, tarifas, evolução da dívida e demais componentes financeiros.",
+      "Juros, tarifas, encargos e evolução da dívida em empréstimos, financiamentos e outras operações bancárias.",
     situation:
       "Indicada quando o cliente precisa compreender como os valores de uma operação bancária foram formados ou evoluíram ao longo do contrato.",
     details: [
@@ -77,7 +77,7 @@ export const services: Service[] = [
     slug: "calculos-e-apuracao-de-valores",
     title: "Cálculos e Apuração de Valores",
     summary:
-      "Conferência, reconstrução e apuração de valores com base em documentos, contratos e informações financeiras.",
+      "Conferência, reconstrução e apuração de valores a partir de contratos, extratos e demonstrativos.",
     situation:
       "Pode ser solicitado quando há necessidade de reconstruir uma evolução financeira, conferir um demonstrativo ou comparar valores documentados.",
     details: [
@@ -91,7 +91,7 @@ export const services: Service[] = [
     slug: "calculo-de-revisao-trabalhista",
     title: "Cálculo de Revisão Trabalhista",
     summary:
-      "Elaboração e revisão de cálculos trabalhistas com análise técnica de verbas, reflexos, encargos e demais valores envolvidos.",
+      "Elaboração e revisão de cálculos trabalhistas: verbas, reflexos, encargos e demais valores.",
     situation:
       "Indicado quando é preciso elaborar ou conferir valores trabalhistas com base nos documentos e nas informações relacionados ao caso.",
     details: [
@@ -105,7 +105,7 @@ export const services: Service[] = [
     slug: "analise-documental-e-financeira",
     title: "Análise Documental e Financeira",
     summary:
-      "Exame criterioso de documentos, demonstrativos, contratos e dados financeiros para identificar inconsistências ou divergências.",
+      "Exame de documentos, demonstrativos e dados financeiros para identificar inconsistências ou divergências.",
     situation:
       "Pode ser solicitada antes de uma decisão, negociação ou demanda que dependa da compreensão cuidadosa de documentos financeiros.",
     details: [

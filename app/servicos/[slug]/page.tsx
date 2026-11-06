@@ -98,7 +98,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <h1>{service.title}</h1>
             <p className="service-page-lead">{service.summary}</p>
             <div className="hero-actions">
-              <a className="button primary" href={whatsappUrl} target="_blank" rel="noreferrer">
+              <a className="button primary large" href={whatsappUrl} target="_blank" rel="noreferrer" data-cta="servico-topo">
                 <MessageCircle size={19} strokeWidth={2} aria-hidden="true" />
                 Falar sobre este serviço
               </a>
@@ -117,13 +117,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="service-detail-main">
           <div className="detail-section">
             <p className="eyebrow">Quando solicitar</p>
-            <h2>Em quais situações este serviço pode ajudar</h2>
+            <h2>Quando este serviço ajuda</h2>
             <p>{service.situation}</p>
           </div>
 
           <div className="detail-section">
-            <p className="eyebrow">O que será considerado</p>
-            <h2>Análise organizada conforme a demanda</h2>
+            <p className="eyebrow">O que é verificado</p>
+            <h2>Etapas do trabalho</h2>
             <ul className="service-detail-list">
               {service.details.map((detail) => (
                 <li key={detail}>
@@ -135,22 +135,19 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
 
           <div className="detail-note">
-            <strong>Cada atendimento começa pela análise da necessidade apresentada.</strong>
+            <strong>Sem conclusões antecipadas.</strong>
             <p>
-              A documentação e o escopo do trabalho são definidos de acordo com as
-              particularidades da demanda, sem conclusões antecipadas.
+              Documentos e escopo são definidos a partir do seu caso, no primeiro
+              contato.
             </p>
           </div>
         </div>
 
         <aside className="service-contact-panel">
           <p className="eyebrow">Contato direto</p>
-          <h2>Apresente sua demanda à Fernanda</h2>
-          <p>
-            Envie uma mensagem para explicar brevemente o caso e verificar os
-            documentos necessários para a análise inicial.
-          </p>
-          <a className="button primary large" href={whatsappUrl} target="_blank" rel="noreferrer">
+          <h2>Apresente sua demanda</h2>
+          <p>Explique o caso em poucas linhas e saiba quais documentos enviar.</p>
+          <a className="button primary large" href={whatsappUrl} target="_blank" rel="noreferrer" data-cta="servico-painel">
             Falar pelo WhatsApp
             <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
           </a>

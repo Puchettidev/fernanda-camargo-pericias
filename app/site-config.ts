@@ -8,6 +8,17 @@ export const contact = {
   email: "fernandacamargopericias@gmail.com",
 };
 
+/** Cidades atendidas (rodapé, página /cidades-atendidas e dados estruturados). */
+// TODO: Fernanda confirmar — lista provisória, revisar quais cidades realmente atende.
+export const serviceArea = [
+  "Muriaé",
+  "Cataguases",
+  "Ubá",
+  "Leopoldina",
+  "Carangola",
+  "Viçosa",
+];
+
 export const profile = {
   /** Caminho da foto em /public, ex.: "/fernanda-camargo.jpg". null mostra o placeholder. */
   // TODO: Fernanda enviar — foto profissional.
