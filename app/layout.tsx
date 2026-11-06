@@ -68,11 +68,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  icons: {
-    icon: "/icone-fernanda.png",
-    shortcut: "/icone-fernanda.png",
-    apple: "/icone-fernanda.png",
-  },
+  // Ícones: app/icon.png e app/apple-icon.png (versões leves do logotipo).
 };
 
 export default function RootLayout({
