@@ -1915,6 +1915,11 @@ address small {
   grid-template-columns: minmax(260px, 380px) minmax(0, 1fr);
 }
 
+.about-layout.no-photo {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 860px;
+}
+
 .about-photo {
   margin: 0;
   position: relative;

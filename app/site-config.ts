@@ -20,15 +20,18 @@ export const serviceArea = [
 ];
 
 export const profile = {
-  /** Caminho da foto em /public, ex.: "/fernanda-camargo.jpg". null mostra o placeholder. */
-  // TODO: Fernanda enviar — foto profissional.
+  /**
+   * Caminho da foto em /public, ex.: "/fernanda-camargo.jpg".
+   * Enquanto for null, a seção "Sobre" aparece só com texto (sem espaço vazio).
+   */
+  // TODO: Fernanda enviar — foto profissional (vertical, 4:5, fundo neutro).
   photo: null as string | null,
-  /** Link do Perfil da Empresa no Google (botão "Perfil no Google" só aparece quando preenchido). */
+  /** Link do Perfil da Empresa no Google. O botão "Perfil no Google" só aparece quando preenchido. */
   // TODO: Fernanda enviar — link do Perfil da Empresa no Google (ex.: https://g.page/...).
   googleBusinessUrl: "",
-  /** Link do botão "Ver no mapa". Hoje aponta para Muriaé/MG; trocar pelo link do perfil/endereço. */
-  // TODO: Fernanda enviar — link do Google Maps do perfil ou endereço de atendimento.
-  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Muria%C3%A9%2C+MG",
+  /** Link do Google Maps do perfil/endereço. O botão "Ver no mapa" só aparece quando preenchido. */
+  // TODO: Fernanda enviar — link do Google Maps quando houver perfil ou local de atendimento.
+  mapsUrl: "",
 };
 
 /**

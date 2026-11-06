@@ -49,11 +49,13 @@ export function SiteFooter() {
             <li>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
             </li>
-            <li>
-              <a href={profile.mapsUrl} target="_blank" rel="noreferrer">
-                Ver no mapa
-              </a>
-            </li>
+            {profile.mapsUrl ? (
+              <li>
+                <a href={profile.mapsUrl} target="_blank" rel="noreferrer">
+                  Ver no mapa
+                </a>
+              </li>
+            ) : null}
             {profile.googleBusinessUrl ? (
               <li>
                 <a href={profile.googleBusinessUrl} target="_blank" rel="noreferrer">

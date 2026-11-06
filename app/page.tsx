@@ -356,9 +356,10 @@ export default function Home() {
       />
 
       <section className="section about" id="sobre">
-        <div className="about-layout">
-          <figure className="about-photo">
-            {profile.photo ? (
+        <div className={profile.photo ? "about-layout" : "about-layout no-photo"}>
+          {/* A foto só aparece quando profile.photo for preenchido em site-config.ts */}
+          {profile.photo ? (
+            <figure className="about-photo">
               <Image
                 src={profile.photo}
                 alt="Fernanda Camargo Rodrigues, administradora e perita econômico-financeira"
@@ -366,17 +367,12 @@ export default function Home() {
                 height={800}
                 sizes="(max-width: 980px) 360px, 380px"
               />
-            ) : (
-              // TODO: Fernanda enviar — foto profissional (vertical, 4:5, fundo neutro). Salvar em /public e preencher profile.photo em site-config.ts
-              <div className="about-photo-placeholder" role="img" aria-label="Foto da Fernanda em breve">
-                <span>FC</span>
-              </div>
-            )}
-            <figcaption>
-              <strong>Fernanda Camargo Rodrigues</strong>
-              <span>Administradora · CRA-MG 01-058746/D</span>
-            </figcaption>
-          </figure>
+              <figcaption>
+                <strong>Fernanda Camargo Rodrigues</strong>
+                <span>Administradora · CRA-MG 01-058746/D</span>
+              </figcaption>
+            </figure>
+          ) : null}
 
           <div className="about-content">
             <p className="eyebrow">Sobre a profissional</p>
@@ -497,18 +493,22 @@ export default function Home() {
               <span>Muriaé - MG</span>
               <a href={`tel:${contact.phoneHref}`}>{contact.phoneDisplay}</a>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
-              <span className="address-links">
-                <a href={profile.mapsUrl} target="_blank" rel="noreferrer">
-                  <MapPin size={17} strokeWidth={2} aria-hidden="true" />
-                  Ver no mapa
-                </a>
-                {profile.googleBusinessUrl ? (
-                  <a href={profile.googleBusinessUrl} target="_blank" rel="noreferrer">
-                    <Star size={17} strokeWidth={2} aria-hidden="true" />
-                    Perfil no Google
-                  </a>
-                ) : null}
-              </span>
+              {profile.mapsUrl || profile.googleBusinessUrl ? (
+                <span className="address-links">
+                  {profile.mapsUrl ? (
+                    <a href={profile.mapsUrl} target="_blank" rel="noreferrer">
+                      <MapPin size={17} strokeWidth={2} aria-hidden="true" />
+                      Ver no mapa
+                    </a>
+                  ) : null}
+                  {profile.googleBusinessUrl ? (
+                    <a href={profile.googleBusinessUrl} target="_blank" rel="noreferrer">
+                      <Star size={17} strokeWidth={2} aria-hidden="true" />
+                      Perfil no Google
+                    </a>
+                  ) : null}
+                </span>
+              ) : null}
               <small>
                 Atendimento com sigilo profissional e tratamento responsável das
                 informações compartilhadas.
