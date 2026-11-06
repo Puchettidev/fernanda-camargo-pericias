@@ -1,100 +1,43 @@
-# vinext-starter
+# Fernanda Camargo Perícias
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Site institucional de https://www.fernandacamargopericias.com.br (Next.js 16, App Router, hospedado na Vercel).
 
-## Prerequisites
-
-- Node.js `>=22.13.0`
-
-## Quick Start
+## Comandos
 
 ```bash
 npm install
-npm run dev
-npm run build
+npm run dev     # desenvolvimento
+npm run build   # build de produção
+npm run lint
 ```
 
-This starter does not use `wrangler.jsonc`.
+## Variáveis de ambiente (Vercel → Settings → Environment Variables)
 
-## Included Shape
+| Variável | Para que serve | Sem ela |
+| --- | --- | --- |
+| `NEXT_PUBLIC_GTM_ID` | ID do Google Tag Manager (`GTM-XXXXXXX`). Carrega o GTM com Consent Mode v2 e ativa o banner de cookies. | Nenhum script do Google é carregado e o banner não aparece. |
+| `NEXT_PUBLIC_FORMSPREE_ID` | ID do formulário no Formspree (a parte depois de `/f/`). As mensagens chegam no e-mail da conta. | O formulário abre o WhatsApp com os dados preenchidos. |
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+## Eventos de conversão (dataLayer)
 
-## Workspace Auth Headers
+Disparados para criar acionadores de "Evento personalizado" no GTM e importar como conversões no Google Ads:
 
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
+| Evento | Quando | Parâmetros |
+| --- | --- | --- |
+| `whatsapp_click` | Clique em qualquer link do WhatsApp | `cta_location`, `page_path` |
+| `phone_click` | Clique em `tel:` | `cta_location`, `page_path` |
+| `email_click` | Clique em `mailto:` | `cta_location`, `page_path` |
+| `form_submit` | Envio do formulário com sucesso | `form_method` (`formspree`/`whatsapp`), `demand`, `page_path` |
 
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
+O consentimento começa negado (`ad_storage`, `ad_user_data`, `ad_personalization`, `analytics_storage`) e só é liberado quando o visitante clica em "Aceitar". A escolha fica em `localStorage` (`fcp-consent`).
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+Quando a URL tem `utm_source` ou `gclid`, a origem (ex.: "Vim pelo Google") é anexada à mensagem do WhatsApp durante toda a visita.
 
-Treat the full name as optional and fall back to email when it is absent:
+## Onde editar
 
-```tsx
-import { headers } from "next/headers";
+- Contatos, foto, links do Google, cidades: `app/site-config.ts`
+- Serviços (textos, títulos e descrições de SEO): `app/service-data.ts`
+- Depoimentos (ocultos até `SHOW_TESTIMONIALS = true`): `app/components/testimonials.tsx`
+- Dados estruturados (JSON-LD): `app/seo.ts`
 
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+Pendências que dependem da Fernanda estão marcadas no código com `TODO: Fernanda`.

@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import Link from "next/link";
 import { Send } from "lucide-react";
+import { track } from "../lib/analytics";
 import { createWhatsappUrl, formspreeId } from "../site-config";
 import { readOrigin } from "./whatsapp-origin";
 
@@ -41,6 +43,7 @@ export function ContactForm({ demandOptions }: ContactFormProps) {
         .filter(Boolean)
         .join("\n");
       window.open(createWhatsappUrl(undefined, text), "_blank", "noopener,noreferrer");
+      track("form_submit", { form_method: "whatsapp", demand });
       setStatus("sent");
       form.reset();
       return;
@@ -62,6 +65,7 @@ export function ContactForm({ demandOptions }: ContactFormProps) {
       });
 
       if (!response.ok) throw new Error(`Formspree ${response.status}`);
+      track("form_submit", { form_method: "formspree", demand });
       setStatus("sent");
       form.reset();
     } catch {
@@ -148,7 +152,8 @@ export function ContactForm({ demandOptions }: ContactFormProps) {
       ) : null}
 
       <p className="form-note">
-        Seus dados são usados apenas para retornar o contato.
+        Seus dados são usados apenas para retornar o contato. Veja a{" "}
+        <Link href="/politica-de-privacidade">Política de Privacidade</Link>.
       </p>
     </form>
   );

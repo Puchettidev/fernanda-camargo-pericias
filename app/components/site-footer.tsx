@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { trackingEnabled } from "../lib/analytics";
 import { services } from "../service-data";
+import { CookiePreferencesButton } from "./cookie-banner";
 import { contact, createWhatsappUrl, profile, serviceArea } from "../site-config";
 
 export function SiteFooter() {
@@ -75,7 +77,10 @@ export function SiteFooter() {
 
       <div className="footer-bottom">
         <span>© {year} Fernanda Camargo Perícias. Todos os direitos reservados.</span>
-        <span>Muriaé - MG</span>
+        <span className="footer-legal">
+          <Link href="/politica-de-privacidade">Política de Privacidade</Link>
+          {trackingEnabled ? <CookiePreferencesButton /> : null}
+        </span>
       </div>
     </footer>
   );

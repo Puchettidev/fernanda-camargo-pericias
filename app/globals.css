@@ -1784,6 +1784,128 @@ address small {
   }
 }
 
+.legal-text {
+  max-width: 820px;
+}
+
+.legal-text h2 {
+  font-size: 26px;
+  margin: 40px 0 12px;
+}
+
+.legal-text h2:first-child {
+  margin-top: 0;
+}
+
+.legal-text p,
+.legal-text li {
+  color: #3f5365;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.legal-text ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+}
+
+.legal-text a,
+.form-note a,
+.cookie-banner a {
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-legal {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.footer-legal a {
+  align-items: center;
+  display: inline-flex;
+  min-height: 44px;
+}
+
+.footer-legal .footer-link-button {
+  color: #d9e1e8;
+  font-size: 13px;
+}
+
+/* ---------- Banner de cookies (LGPD) ---------- */
+
+.cookie-banner {
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  border-top: 3px solid var(--gold);
+  bottom: 20px;
+  box-shadow: 0 24px 60px rgba(6, 29, 51, 0.24);
+  display: flex;
+  gap: 20px;
+  left: 20px;
+  max-width: 640px;
+  padding: 18px 20px;
+  position: fixed;
+  z-index: 40;
+}
+
+.cookie-banner p {
+  color: #3f5365;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cookie-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.cookie-actions .button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  min-width: 96px;
+}
+
+.cookie-actions .button.secondary {
+  border: 1px solid rgba(189, 139, 47, 0.48);
+}
+
+@media (max-width: 680px) {
+  .cookie-banner {
+    border-radius: 12px 12px 0 0;
+    bottom: 0;
+    flex-direction: column;
+    gap: 14px;
+    left: 0;
+    max-width: none;
+    padding: 18px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+    right: 0;
+  }
+
+  .cookie-actions {
+    width: 100%;
+  }
+
+  .cookie-actions .button {
+    flex: 1;
+    width: auto;
+  }
+
+  body[data-cookie-banner] .floating-whatsapp {
+    bottom: calc(190px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* ---------- Confiança ---------- */
 
 .about-layout {

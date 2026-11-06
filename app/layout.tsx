@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ConversionEvents } from "./components/conversion-events";
+import { CookieBanner } from "./components/cookie-banner";
+import { GoogleTagManagerHead, GoogleTagManagerNoScript } from "./components/google-tag-manager";
 import { ScrollReveal } from "./components/scroll-reveal";
+import { trackingEnabled } from "./lib/analytics";
 import { WhatsappFloat } from "./components/whatsapp-float";
 import { WhatsappOrigin } from "./components/whatsapp-origin";
 import { services } from "./service-data";
@@ -78,11 +82,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <head>
+        <GoogleTagManagerHead />
+      </head>
       <body>
+        <GoogleTagManagerNoScript />
         {children}
         <WhatsappFloat serviceTitles={serviceTitles} />
         <WhatsappOrigin />
+        <ConversionEvents />
         <ScrollReveal />
+        {trackingEnabled ? <CookieBanner /> : null}
       </body>
     </html>
   );
